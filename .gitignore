@@ -1,5 +1,6 @@
 .stack-work/
 i3-analytics.cabal
+i3-analytics-exe
 
 *~
 dist

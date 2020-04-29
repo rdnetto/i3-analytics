@@ -16,6 +16,10 @@ description:         Please see the README on GitHub at <https://github.com/gith
 
 dependencies:
 - base >= 4.7 && < 5
+- basic-prelude
+
+ghc-options:
+  - -XScopedTypeVariables
 
 executables:
   i3-analytics-exe:
@@ -27,5 +31,14 @@ executables:
     - -with-rtsopts=-N
     - -XNoImplicitPrelude
     dependencies:
-    - basic-prelude
+    - aeson
+    - bytestring
+    - chronos
+    - containers
+    - directory
     - i3ipc
+    - microlens
+    - microlens-ghc
+    - microlens-th
+    - safe
+    - template-haskell
