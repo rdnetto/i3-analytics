@@ -3,7 +3,21 @@
 # For more information, please see the documentation at:
 #   https://docs.haskellstack.org/en/stable/lock_files
 
-packages: []
+packages:
+- completed:
+    cabal-file:
+      size: 3957
+      sha256: 19f0c2287017c2e5671dc70a1be763c331c6766981dd9512e301c83b038a4525
+    name: i3ipc
+    version: 0.1.0.1
+    git: git@github.com:rdnetto/i3ipc.git
+    pantry-tree:
+      size: 1192
+      sha256: 52b3b8c566b3c8154545669a5bba963ec4ea88cf76eee2d774dccd39d41c6b63
+    commit: 1a396255e4aaa64fb8ea6d889f3f4d652015ee79
+  original:
+    git: git@github.com:rdnetto/i3ipc.git
+    commit: 1a396255e4aaa64fb8ea6d889f3f4d652015ee79
 snapshots:
 - completed:
     size: 493124

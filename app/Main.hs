@@ -1,6 +1,8 @@
 module Main where
 
-import Lib
+import BasicPrelude
+import I3IPC (subscribe)
+import qualified I3IPC.Subscribe as Sub
 
 main :: IO ()
-main = someFunc
+main = subscribe print [Sub.Window]
