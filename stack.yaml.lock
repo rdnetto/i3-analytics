@@ -5,22 +5,15 @@
 
 packages:
 - completed:
-    cabal-file:
-      size: 3957
-      sha256: 19f0c2287017c2e5671dc70a1be763c331c6766981dd9512e301c83b038a4525
-    name: i3ipc
-    version: 0.1.0.1
-    git: git@github.com:rdnetto/i3ipc.git
+    hackage: i3ipc-0.2.0.0@sha256:d2fef6058ead7115b5602686ec67fd485a934d5b67ee97acf68c92de89ee31fe,3993
     pantry-tree:
-      size: 1192
-      sha256: 52b3b8c566b3c8154545669a5bba963ec4ea88cf76eee2d774dccd39d41c6b63
-    commit: 1a396255e4aaa64fb8ea6d889f3f4d652015ee79
+      size: 932
+      sha256: 5145bf57619b02077c7401fecbf2dcc1bff7e913a8a4e30a4c2f259bf453785b
   original:
-    git: git@github.com:rdnetto/i3ipc.git
-    commit: 1a396255e4aaa64fb8ea6d889f3f4d652015ee79
+    hackage: i3ipc-0.2.0.0
 snapshots:
 - completed:
-    size: 493124
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/15/10.yaml
-    sha256: 48bc6d1d59224a5166265ef6cdda6a512f29ecc8ef7331826312b82377e89507
-  original: lts-15.10
+    size: 494638
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/15/11.yaml
+    sha256: 5747328cdcbb8fe9c96fc048b5566167c80dd176a41b52d3b363058e3cc1dc5d
+  original: lts-15.11
