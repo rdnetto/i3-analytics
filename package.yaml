@@ -20,6 +20,7 @@ dependencies:
 
 default-extensions:
 - NoImplicitPrelude
+- PartialTypeSignatures
 - ScopedTypeVariables
 
 executables:
@@ -40,5 +41,6 @@ executables:
     - microlens
     - microlens-ghc
     - microlens-th
+    - optparse-applicative
     - safe
     - template-haskell

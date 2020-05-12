@@ -2,6 +2,7 @@ module Main where
 
 import BasicPrelude
 import Chronos (Time, now)
+import CLI
 import Data.Aeson (encode)
 import qualified Data.ByteString.Lazy as BSL
 import qualified Data.Map.Strict as DMS
@@ -12,6 +13,7 @@ import I3IPC.Reply (WindowProperty(Title, Instance), Node(node_window_properties
 import qualified I3IPC.Subscribe as Sub
 import Lens.Micro ((^?), (^.), _Just, at)
 import Lens.Micro.GHC ()
+import Options.Applicative (execParser)
 import OrphanLenses
 import Safe (fromJustNote)
 import System.Directory (XdgDirectory(XdgData), getXdgDirectory, createDirectoryIfMissing)
@@ -20,6 +22,13 @@ import System.IO (Handle, IOMode(AppendMode), hPutStrLn, withFile)
 
 main :: IO ()
 main = do
+  cmd <- execParser cliParser
+  case cmd of
+       CliSubscribe -> subscribeEvents
+       CliAnalyse -> error "Not implemented"
+
+subscribeEvents :: IO ()
+subscribeEvents = do
   configDir <- getXdgDirectory XdgData "i3-analytics"
   createDirectoryIfMissing True configDir
   let configFile = configDir </> "focus_events.jsonl"
