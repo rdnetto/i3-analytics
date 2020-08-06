@@ -4,3 +4,12 @@ Simple program which uses i3's IPC mechanism to record window focus events in a 
 TODOs:
 * figure out how to detect when the screen is locked and filter those events out
 
+
+## How to install
+```
+stack install
+cp i3-analytics.service ~/.config/systemd/user/
+systemctl --user daemon-reload
+systemctl --user enable --now i3-analytics
+```
+
