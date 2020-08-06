@@ -6,7 +6,14 @@ import Options.Applicative
 
 data CLI
   = CliSubscribe
-  | CliAnalyse
+  | CliAnalyse CliPeriod
+  deriving (Eq, Show)
+
+-- The period of data to analyse
+data CliPeriod
+  = CliDay
+  | CliWeek
+  | CliAll
   deriving (Eq, Show)
 
 
@@ -21,6 +28,20 @@ cliParser
       $ progDesc "Subscribe to i3 events, logging them"
     analyse
       = command "analyse"
-      . info (pure CliAnalyse)
+      . info analyseSubcmd
       $ progDesc "Analyse logged i3 events"
+
+    analyseSubcmd = hsubparser $ dayCmd <> weekCmd <> allCmd
+    dayCmd
+      = command "today"
+      . info (pure $ CliAnalyse CliDay)
+      $ progDesc "Analyse today's usage"
+    weekCmd
+      = command "this-week"
+      . info (pure $ CliAnalyse CliWeek)
+      $ progDesc "Analyse this week's usage"
+    allCmd
+      = command "all"
+      . info (pure $ CliAnalyse CliAll)
+      $ progDesc "Analyse all recorded usage"
 

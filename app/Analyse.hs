@@ -13,11 +13,9 @@ import FocusEvent
 import JSONL (decodeFile)
 import LabelRules
 
-analyseEvents :: IO ()
-analyseEvents = do
-  -- For now, let's just try displaying a breakdown of the last day
-  startTime <- dayToTimeMidnight <$> today
-  rows <- filter ((> startTime) . feTimestamp) <$> loadRows
+analyseEvents :: (Time -> Bool) -> IO ()
+analyseEvents cond = do
+  rows <- filter (cond . feTimestamp) <$> loadRows
 
   -- Label & combine rows
   let labels
