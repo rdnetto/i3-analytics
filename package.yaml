@@ -20,6 +20,8 @@ dependencies:
 
 default-extensions:
 - NoImplicitPrelude
+- OverloadedStrings
+- RecordWildCards
 - PartialTypeSignatures
 - ScopedTypeVariables
 
@@ -42,7 +44,11 @@ executables:
     - microlens
     - microlens-ghc
     - microlens-th
+    - mtl
     - parser-combinators
     - optparse-applicative
     - safe
     - template-haskell
+    - text
+    - torsor
+    - unordered-containers
