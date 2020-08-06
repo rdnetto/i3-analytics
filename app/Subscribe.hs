@@ -2,6 +2,8 @@ module Subscribe where
 
 import BasicPrelude
 import Chronos (Time, now)
+import Control.Concurrent (myThreadId)
+import Control.Exception (finally, throwTo)
 import Data.Aeson (encode)
 import qualified Data.ByteString.Lazy as BSL
 import qualified Data.Map.Strict as DMS
@@ -12,7 +14,9 @@ import qualified I3IPC.Subscribe as Sub
 import Lens.Micro ((^?), (^.), _Just, at)
 import Lens.Micro.GHC ()
 import Safe (fromJustNote)
+import System.Exit(ExitCode(ExitSuccess))
 import System.IO (Handle, IOMode(AppendMode), hPutStrLn, withFile)
+import System.Posix.Signals (Handler(..), installHandler, sigTERM)
 
 import ConfigFile
 import FocusEvent
@@ -23,8 +27,15 @@ subscribeEvents :: IO ()
 subscribeEvents = do
   configFile' <- configFile
 
-  withFile configFile' AppendMode $ \h ->
-    subscribe (handleEvent $ appendEntry h) [Sub.Window]
+  withFile configFile' AppendMode $ \h -> do
+    -- Gracefully handle SIGTERM
+    -- Note that SIGINT already works via throwing an exception, so no additional logic is needed
+    mainThread <- myThreadId
+    installHandler sigTERM (Catch $ throwTo mainThread ExitSuccess) Nothing
+
+    finally
+        (subscribe (handleEvent $ appendEntry h) [Sub.Window])
+        (onExit h)
 
 
 handleEvent :: (FocusEvent -> IO ()) -> Either String Event -> IO ()
@@ -57,3 +68,9 @@ appendEntry :: Handle -> FocusEvent -> IO ()
 appendEntry h record = do
   BSL.hPut h (encode record)
   hPutStrLn h ""
+
+onExit :: Handle -> IO ()
+onExit h = do
+    t0 <- now
+    appendEntry h $ FocusEvent t0 "_terminated" "_terminated"
+

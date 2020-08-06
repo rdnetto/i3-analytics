@@ -15,7 +15,7 @@ import LabelRules
 
 analyseEvents :: (Time -> Bool) -> IO ()
 analyseEvents cond = do
-  rows <- filter (cond . feTimestamp) <$> loadRows
+  rows <- filter ((/= "_terminated") . feInstance) . filter (cond . feTimestamp) <$> loadRows
 
   -- Label & combine rows
   let labels

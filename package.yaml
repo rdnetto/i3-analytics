@@ -51,4 +51,5 @@ executables:
     - template-haskell
     - text
     - torsor
+    - unix
     - unordered-containers
