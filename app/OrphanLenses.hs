@@ -4,9 +4,9 @@ module OrphanLenses where
 
 import BasicPrelude
 import I3IPC.Event (Event(Window), WindowEvent, WindowChange)
-import I3IPC.Reply (Node(Node))
-import Lens.Micro ((.~), Traversal')
-import Lens.Micro.TH (makeLensesWith, lensRules, lensField, DefName(TopName))
+import I3IPC.Reply (Node)
+import Lens.Micro (Traversal')
+import Lens.Micro.TH (makeLensesWith)
 import LensConfig (myRules)
 
 

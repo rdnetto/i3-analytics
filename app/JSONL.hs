@@ -5,7 +5,6 @@ import Control.Monad.Combinators (many)
 import Data.Aeson (JSONPath, FromJSON, Value)
 import Data.Aeson.Internal (IResult(..), ifromJSON, formatError)
 import Data.Aeson.Parser (json)
-import Data.Aeson.Types (parseEither)
 import Data.Attoparsec.ByteString (skipWhile)
 import Data.Attoparsec.ByteString.Char8 (Parser, endOfInput, parseOnly)
 import Data.Bifunctor (first)
@@ -29,7 +28,7 @@ decode bs = do
   where
     mapLeft = first
 
-    -- convertElement :: Int -> Value -> Either String a
+    convertElement :: FromJSON a => Int -> Value -> Either String a
     convertElement lineNo val
       = case ifromJSON val of
              ISuccess x      -> pure x
@@ -41,7 +40,7 @@ decode bs = do
       f :: Either l r -> Either [l] [r] -> Either [l] [r]
       f (Left l0) (Left ls) = Left (l0:ls)
       f (Left l0) (Right _) = Left [l0]
-      f (Right r0) (Left ls) = Left ls
+      f (Right _) (Left ls) = Left ls
       f (Right r0) (Right rs) = Right (r0:rs)
 
 

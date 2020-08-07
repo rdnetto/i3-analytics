@@ -3,7 +3,7 @@
 module FocusEvent where
 
 import BasicPrelude
-import Chronos (Time)
+import Chronos (Time, now)
 import Data.Aeson (FromJSON, ToJSON)
 import GHC.Generics (Generic)
 

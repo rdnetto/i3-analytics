@@ -4,9 +4,8 @@ import BasicPrelude hiding (second)
 import Chronos
 import Control.Monad.State as S
 import qualified Data.HashMap.Strict as HMS
-import Data.List (sortBy)
 import Safe (headDef)
-import Torsor (add, difference, invert)
+import Torsor (difference, invert)
 
 import ConfigFile
 import FocusEvent

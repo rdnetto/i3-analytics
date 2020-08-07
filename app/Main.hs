@@ -5,7 +5,7 @@ import Chronos
 import CLI
 import Data.Semigroup (stimes)
 import Options.Applicative (execParser)
-import Torsor (add, invert, scale)
+import Torsor (add, invert)
 
 import Analyse (analyseEvents)
 import Subscribe (subscribeEvents)

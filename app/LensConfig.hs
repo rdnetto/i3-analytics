@@ -1,6 +1,5 @@
 module LensConfig where
 
-import BasicPrelude
 import Language.Haskell.TH.Syntax (Name, mkName, nameBase)
 import Lens.Micro ((.~), (&))
 import Lens.Micro.TH
