@@ -13,6 +13,7 @@ import System.Posix.Signals (Handler(..), installHandler, sigTERM)
 import ConfigFile
 import FocusEvent
 import Subscribe.I3
+import Subscribe.LockEvents
 
 
 subscribeEvents :: IO ()
@@ -31,6 +32,7 @@ subscribeEvents = do
     -- However, if the child threads die, we need to make sure we take the parent out too so we don't keep running in degraded state
     let forkChild f = void . forkIO $ onException f (killThread mainThread)
     forkChild . subscribeI3 $ writeChan logQueue
+    forkChild . subscribeScreenLock $ writeChan logQueue
 
     finally
       (forever $ appendEntry h =<< readChan logQueue)

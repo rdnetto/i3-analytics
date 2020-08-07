@@ -19,6 +19,6 @@ instance ToJSON FocusEvent
 
 
 -- Convenience function for constructing a new event
-mkEvent :: Text -> Text -> IO FocusEvent
-mkEvent title inst = (FocusEvent <$> now <*> pure title <*> pure inst)
+mkEvent :: MonadIO m => Text -> Text -> m FocusEvent
+mkEvent title inst = (FocusEvent <$> liftIO now <*> pure title <*> pure inst)
 
