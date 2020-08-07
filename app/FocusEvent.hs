@@ -17,3 +17,8 @@ data FocusEvent = FocusEvent {
 instance FromJSON FocusEvent
 instance ToJSON FocusEvent
 
+
+-- Convenience function for constructing a new event
+mkEvent :: Text -> Text -> IO FocusEvent
+mkEvent title inst = (FocusEvent <$> now <*> pure title <*> pure inst)
+

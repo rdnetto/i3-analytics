@@ -3,6 +3,8 @@ Simple program which uses i3's IPC mechanism to record window focus events in a 
 
 TODOs:
 * figure out how to detect when the screen is locked and filter those events out
+    - should prob just watch processes for it...
+* display percentages
 
 
 ## How to install
