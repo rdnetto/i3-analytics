@@ -6,6 +6,7 @@ After=display-manager.service
 Type=simple
 ExecStart=sh -c '~/.local/bin/i3-analytics subscribe'
 Restart=always
+RestartSec=10sec
 
 [Install]
 WantedBy=default.target
